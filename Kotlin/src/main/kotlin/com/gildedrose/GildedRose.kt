@@ -40,4 +40,3 @@ class GildedRose(val items: List<Item>) {
     }
 }
 
-
