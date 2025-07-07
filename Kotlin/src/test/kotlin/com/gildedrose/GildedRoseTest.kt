@@ -14,7 +14,7 @@ internal class GildedRoseTest {
 
     }
     @Test
-    fun qualityDecreases() {
+    fun  `quality decreases by one for a normal item before expiry` () {
         val items = listOf(Item("foo", 1, 1))
         val app = GildedRose(items)
         app.updateQuality()
@@ -22,7 +22,7 @@ internal class GildedRoseTest {
 
     }
     @Test
-    fun sellinDecreases() {
+    fun `sellin decreases by one for a normal item before expiry`() {
         val items = listOf(Item("foo", 2, 1))
         val app = GildedRose(items)
         app.updateQuality()
@@ -46,7 +46,7 @@ internal class GildedRoseTest {
 
     }
     @Test
-    fun qualityNotBelowZeroPosSellin() {
+    fun `quality goes to 0 when the item reaches its expiry`() {
         val items = listOf(Item("foo", 10, 1))
         val app = GildedRose(items)
         app.updateQuality()
@@ -60,13 +60,7 @@ internal class GildedRoseTest {
         app.updateQuality()
         assertEquals(8, app.items[0].quality)
     }
-    @Test
-    fun qualityDegradesTwiceAsFast2() {
-        val items = listOf(Item("foo", 0, 10))
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(8, app.items[0].quality)
-    }
+
     @Test
     fun qualityNotMoreThan50() {
         val items = listOf(Item("foo", 0, 60))
@@ -112,7 +106,7 @@ internal class GildedRoseTest {
     }
 
     @Test
-    fun agedBrieDoesNotIncreaseTwiceFasterAfterSellin() {
+    fun agedBrieDoesNotIncreaseTwiceAsFastAfterSellin() {
         val items = listOf(Item("Aged Brie", 0, 40))
         val app = GildedRose(items)
         app.updateQuality()
@@ -143,7 +137,7 @@ internal class GildedRoseTest {
         assertEquals(41, app.items[0].quality)
     }
     @Test
-    fun concertIncreasesTwice10to5DaysBeforeSellin() {
+    fun `concert quality increases twice as fast once we reach 10 days before sellin`() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 40))
         val app = GildedRose(items)
         app.updateQuality()
